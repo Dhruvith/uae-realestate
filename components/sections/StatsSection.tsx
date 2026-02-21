@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { VideoBackground } from "@/components/ui/VideoBackground";
 
 export function StatsSection() {
     const prefersReduced = useReducedMotion();
@@ -21,11 +22,15 @@ export function StatsSection() {
     ];
 
     return (
-        <section className="bg-bg-primary border-y border-border-default pt-24 pb-12 relative overflow-hidden">
-            {/* Background Mesh */}
-            <div className="absolute inset-0 z-0 bg-gold-primary/[0.02] mix-blend-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-primary/10 via-bg-primary to-bg-primary" />
+        <section className="relative overflow-hidden border-y border-border-default min-h-[50vh] flex items-center pt-24 pb-12">
+            {/* VIDEO LAYER */}
+            <VideoBackground
+                src="/videos/stats-accent.mp4"
+                preset="stats"
+                showNoise={false}
+            />
 
-            <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+            <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-12">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
                     {stats.map((stat, i) => (
                         <motion.div

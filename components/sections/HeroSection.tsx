@@ -4,8 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { BrokerDashboardMockup } from "@/components/mockups/BrokerDashboardMockup";
+import { VideoBackground } from "@/components/ui/VideoBackground";
 import Link from "next/link";
-import Image from "next/image";
 
 export function HeroSection() {
     const prefersReduced = useReducedMotion();
@@ -27,35 +27,16 @@ export function HeroSection() {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-            {/* Background Image & Overlays */}
-            <div className="absolute inset-0 -z-30">
-                <Image
-                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80"
-                    alt="Dubai Skyline"
-                    fill
-                    priority
-                    className="object-cover object-center grayscale-[20%] opacity-20"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/90 to-bg-primary/40 mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-primary to-transparent" />
-            </div>
+        <section className="relative overflow-hidden min-h-screen flex items-center pt-24 pb-16">
+            {/* VIDEO LAYER */}
+            <VideoBackground
+                src="/videos/hero-bg.mp4"
+                preset="hero"
+                showNoise={true}
+            />
 
-            {/* Animated Mesh & Particles */}
-            <div className="absolute inset-0 -z-20 flex justify-center overflow-hidden" style={{ perspective: "1000px" }}>
-                <motion.div
-                    className="w-[80vw] h-[80vw] lg:w-[40vw] lg:h-[40vw] absolute blur-[120px] rounded-full bg-gold-primary/5 opacity-50 top-1/2 left-1/4 mix-blend-screen"
-                    animate={prefersReduced ? {} : { rotateX: [0, 15, 0], rotateY: [0, -20, 0], z: [0, 50, 0] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="w-[60vw] h-[60vw] lg:w-[30vw] lg:h-[30vw] absolute blur-[100px] rounded-full bg-gold-dark/10 opacity-30 top-1/4 right-1/4 mix-blend-screen"
-                    animate={prefersReduced ? {} : { rotateX: [0, -15, 0], rotateY: [0, 20, 0], z: [0, -50, 0] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                />
-            </div>
-
-            <div className="max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 mt-12">
+            {/* CONTENT LAYER */}
+            <div className="relative z-10 max-w-[1280px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mt-12">
 
                 {/* Left Content */}
                 <div className="lg:col-span-6 flex flex-col items-start pt-10">

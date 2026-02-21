@@ -2,11 +2,11 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useCallback } from "react";
-import Image from "next/image";
-import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { VideoBackground } from "@/components/ui/VideoBackground";
+import { Lock } from "lucide-react";
 import { demoRequestSchema } from "@/lib/validations";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,17 +31,12 @@ export function CTASection() {
 
     return (
         <SectionWrapper className="relative py-32 overflow-hidden bg-bg-primary">
-            {/* Background Image */}
-            <div className="absolute inset-0 -z-10 bg-black">
-                <Image
-                    src="https://images.unsplash.com/photo-1546412414-e1885259563a?w=1920&q=80"
-                    priority
-                    alt="Dubai architecture night"
-                    fill
-                    className="object-cover opacity-15"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/80 to-bg-primary/30" />
-            </div>
+            {/* VIDEO LAYER */}
+            <VideoBackground
+                src="/videos/cta-bg.mp4"
+                preset="cta"
+                showNoise={true}
+            />
 
             <div className="max-w-[700px] mx-auto px-6 relative z-10">
                 <motion.div
