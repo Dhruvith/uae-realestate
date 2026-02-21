@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Build Digital Realities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #050505 0%, #111 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+        }
+
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: auto;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 15, 20, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 30px rgba(0, 195, 255, 0.4);
+        }
+
+        section {
+            padding-top: 50vh;
+            padding-bottom: 50vh;
+        }
+
+        .content-block {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="antialiased selection:bg-blue-500/30">
+
+    <div id="webgl-container"></div>
+
+    <div class="relative z-10 w-full">
+
+        <div class="h-screen w-full flex flex-col items-center justify-center px-6 relative pointer-events-none">
+            <h1
+                class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-center mb-6 text-glow pointer-events-auto">
+                WE BUILD <br /><span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">DIGITAL
+                    REALITIES</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl text-center mb-10 font-light pointer-events-auto">
+                Pioneering the next generation of web experiences through immersive 3D, advanced AI, and meticulous
+                design.
+            </p>
+            <button
+                class="glass-panel text-white px-8 py-4 rounded-full font-medium tracking-wide hover:bg-white/10 transition-colors duration-300 transform hover:scale-105 pointer-events-auto border border-white/20 hover:border-blue-400/50">
+                Explore The Void
+            </button>
+
+            <div class="absolute bottom-10 animate-bounce text-gray-500 text-sm tracking-widest uppercase">
+                Scroll to discover
+            </div>
+        </div>
+
+        <main class="max-w-7xl mx-auto px-6 pb-32">
+
+            <section class="content-block justify-start section-marker" id="section-strategy">
+                <div class="glass-panel p-10 md:p-16 rounded-3xl max-w-xl gs-reveal">
+                    <div class="text-blue-400 font-mono text-sm tracking-widest mb-4">01 // VISUALIZE</div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Strategy</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        We don't just build websites; we engineer digital ecosystems. Our strategic approach aligns deep
+                        technological capabilities with your core business objectives, creating platforms designed to
+                        scale and dominate.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-block justify-end section-marker" id="section-3d">
+                <div class="glass-panel p-10 md:p-16 rounded-3xl max-w-xl gs-reveal">
+                    <div class="text-purple-400 font-mono text-sm tracking-widest mb-4">02 // IMMERSE</div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">3D Web</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Break free from flat interfaces. We harness the power of WebGL and Three.js to craft spatial
+                        experiences that captivate users, blurring the line between software and reality.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-block justify-start section-marker" id="section-ai">
+                <div class="glass-panel p-10 md:p-16 rounded-3xl max-w-xl gs-reveal">
+                    <div class="text-pink-400 font-mono text-sm tracking-widest mb-4">03 // EVOLVE</div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">AI Integration</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Intelligence woven entirely into the fabric of your application. From predictive behavioral
+                        models to generative dynamic content, we give your platform a mind of its own.
+                    </p>
+                </div>
+            </section>
+
+            <section class="h-[50vh] flex items-center justify-center">
+                <h2
+                    class="text-5xl md:text-7xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-600 via-gray-300 to-white text-center">
+                    THE FUTURE IS NOW.
+                </h2>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const container = document.getElementById('webgl-container');
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.035);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 15);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.0;
+        container.appendChild(renderer.domElement);
+
+        const geometry = new THREE.TorusKnotGeometry(3, 1.2, 300, 64, 2, 3);
+
+        const material = new THREE.MeshPhysicalMaterial({
+            color: 0x111111,
+            metalness: 0.8,
+            roughness: 0.2,
+            transmission: 0.9,
+            ior: 1.5,
+            thickness: 2.5,
+            transparent: true,
+            opacity: 1.0,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.1
+        });
+
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        const dirLight = new THREE.DirectionalLight(0x00c3ff, 5);
+        dirLight.position.set(5, 5, 5);
+        scene.add(dirLight);
+
+        const pointLight = new THREE.PointLight(0x8a2be2, 10, 50);
+        pointLight.position.set(-5, -5, -2);
+        scene.add(pointLight);
+
+        const rimLight = new THREE.SpotLight(0xffffff, 4);
+        rimLight.position.set(0, 5, -10);
+        rimLight.lookAt(torusKnot.position);
+        scene.add(rimLight);
+
+        const ambientLight = new THREE.AmbientLight(0x222222, 1);
+        scene.add(ambientLight);
+
+        const clock = new THREE.Clock();
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            torusKnot.rotation.x = time * 0.15;
+            torusKnot.rotation.y = time * 0.2;
+
+            // Base floating / breathing effect
+            const floatX = Math.sin(time * 0.5) * 0.5;
+            const floatY = Math.cos(time * 0.3) * 0.5;
+
+            // Mouse parallax effect
+            camera.position.x += (mouseX * 2 + floatX - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 2 + floatY - camera.position.y) * 0.05;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // GSAP Scroll Animations
+        const camObj = { z: 15, rotZ: 0 };
+
+        gsap.to(camObj, {
+            z: 2.5,
+            rotZ: Math.PI / 1.5,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.5,
+                onUpdate: () => {
+                    camera.position.z = Math.max(camObj.z, 2.5); // Ensure it doesn't clip too far inside
+                    camera.rotation.z = camObj.rotZ;
+                }
+            }
+        });
+
+        // Object color shift on scroll
+        gsap.to(dirLight.color, {
+            r: 1.0, g: 0.0, b: 0.5,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
+            }
+        });
+
+        // UI Fade In
+        gsap.utils.toArray('.gs-reveal').forEach(function (elem) {
+            gsap.fromTo(elem,
+                { y: 100, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 80%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+
+        window.addEventListener('resize', onWindowResize, false);
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+
+</html>
