@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model DemoRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  company     String
+  brokerType  String
+  location    String
+  clientCount String
+  challenge   String?
+  source      String?
+  createdAt   DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}
